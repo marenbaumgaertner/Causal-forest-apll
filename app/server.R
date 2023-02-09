@@ -31,10 +31,10 @@ server <- function(input, output) {
   # Draw sample
   error <- rnorm(n,0,1/10)
   #x = matrix(runif(n*p,-pi,pi),ncol=p)
-  x = read.csv("x.csv") %>% select(-X) %>% as.matrix()
+  x = read.csv("data/x.csv") %>% select(-X) %>% as.matrix()
   m0 = function(x){sin(x)}
   
-  w_all = read.csv("w.csv") %>% select(-X) %>% as.matrix()
+  w_all = read.csv("data/w.csv") %>% select(-X) %>% as.matrix()
   
   
   
@@ -58,13 +58,13 @@ server <- function(input, output) {
     
     
     if (as.numeric(input$e) == 1){
-      cf <- readRDS("cf_sinus.RData")
+      cf <- readRDS("data/cf_sinus.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }else if(as.numeric(input$e) == 2){
-      cf <- readRDS("cf_balanced.RData")
+      cf <- readRDS("data/cf_balanced.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }else if(as.numeric(input$e) == 3){
-      cf <- readRDS("cf_step.RData")
+      cf <- readRDS("data/cf_step.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }
     
@@ -112,18 +112,18 @@ server <- function(input, output) {
     #cf = causal_forest(x, y, w,tune.parameters = "all", seed=42)
     
     if (as.numeric(input$e) == 1){
-      cf <- readRDS("cf_sinus.RData")
+      cf <- readRDS("data/cf_sinus.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }else if(as.numeric(input$e) == 2){
-      cf <- readRDS("cf_balanced.RData")
+      cf <- readRDS("data/cf_balanced.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }else if(as.numeric(input$e) == 3){
-      cf <- readRDS("cf_step.RData")
+      cf <- readRDS("data/cf_step.RData")
       cf <- cf[[as.numeric(input$dgp)]]
     }
     
-    #
-    grid_seq <- seq(-3,3,0.2) # sequence
+    
+    grid_seq <- seq(-3,3,0.2) # sequence of X
     grid <- input$grid # chosen tau
     tau_y <- tau(grid_seq)
     gridx = as.matrix(cbind(grid_seq,matrix(0,length(grid_seq),p-1)))

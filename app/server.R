@@ -140,9 +140,9 @@ server <- function(input, output) {
   
   output$CatePlot <- renderPlot({
     ggplot(data = sliderGrid()) + 
-      geom_line(aes(x = grid_seq, y = grid_hat), color="red") + 
+      geom_line(aes(x = grid_seq, y = grid_hat), color="#d02404") + 
       geom_line(aes(x = grid_seq, y = tau_y), color="black") + 
-      geom_point(aes(x=grid[1],y=`grid_hat`[grid_seq==grid]),size=4,color="red",shape=4)+
+      geom_point(aes(x=grid[1],y=`grid_hat`[grid_seq==grid]),size=4,color="#d02404",shape=4)+
       xlim(-3,3) +
       theme_bw() +
       ylab(expression(tau)) +
@@ -158,11 +158,8 @@ server <- function(input, output) {
   output$scatterPlot <- renderPlot({
     ggplot(aes(res_w, res_y, colour = x), data=sliderValues()) +
       geom_point(aes(size = alpha), alpha = 0.5, show.legend = TRUE) +
-      scale_colour_gradient2(low = "green", mid = "yellow", high = "red", name = expression(X[1])) + 
+      scale_colour_gradient2(low = "#4e9b46", mid = "#fbda14", high = "#d02404", name = expression(X[1])) + 
       geom_abline(mapping=aes(slope=slope, intercept=constant)) +
-      annotate("text", x = -0.25, y = 1, 
-               label = paste0("𝜏(",toString(input$grid),") = slope of line = ",
-                              toString("need help for slope"))) +
       theme_bw() +
       ylab(expression(res[y])) +
       xlab(expression(res[w])) +
@@ -185,22 +182,19 @@ server <- function(input, output) {
     "How: Causal Forests estimate CATEs as a localized/individualized residual-on-residual regression with X-specific weights alpha(X)"
   })
   
- # output$explanationformula <- renderText({
- #   "tau^(cf)(x) = argmin_tau {sum_(i=1)^N alpha_i(x) [(Y - mhat(X_i))- tau(x)(W_i-ehat(X_i))]^2}"
- # })
+  output$explanationformula <- renderText({
+    "𝜏^(cf)(x) = argmin_𝜏 {Σ(i=1)^N α_i(x) [(Y - mhat(X_i))- 𝜏(x)(W_i-ê(X_i))]^2}"
+  })
   
   output$explanation3 <- renderText({
-    "In the first step, the nuisance parameters $mhat(X) and ehat(X) are estimated.
-  After that, a Causal Forest is built using both nuisance parameters and weights alpha(X) to predict tauhat."
+    "In the first step, the nuisance parameters mhat(X) and ê(X) are estimated.
+  After that, a Causal Forest is built using both nuisance parameters and weights α(X) to predict tauhat."
   })
 
   output$explanation4 <- renderText({
     "Splitting Criterion: General Forests split along the influence function of the partially linear estimator:"
   })
   
-  output$explanation5 <- renderText({
-    "rho = [sum_i(W-ehat(X))^2]^(-1) [(Y-mhat(X))-tauhat (W-ehat(X))] (W-ehat(X))"
-  })
   
   output$explanation6 <- renderText({
     "This pseudo-outcome is used to place regression splits. In this way it eventually results in the weights for the residual-on-residual regression."
@@ -239,11 +233,18 @@ server <- function(input, output) {
   }, deleteFile = F)
 
   output$image2 <- renderImage({
-    list(src = "www/meme.jpg",
-         width = 500,
-         height = 100)
+    list(src = "www/function.jpg",
+         width = "40%",
+         height = "auto")
   }, deleteFile = F)
   
+  output$split <- renderImage({
+    list(src = "www/splitting_crit.jpg",
+         width = "40%",
+         height = "auto")
+  }, deleteFile = F)
+  
+ 
   output$image1 <- renderImage({
     list(src = "www/image.jpg",
          width = 400,

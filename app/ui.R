@@ -231,51 +231,51 @@ Move the slider bar to have a look at how the weights change for different value
                              sidebarPanel(
                                h3("a song of praise to shiny"),
                                br(),
-                                        p("Verse 1:
-                                        I'm all about that web development
-                                        Making apps that are sleek and inventive
-                                        Shiny's my tool, it's the king of the game
-                                        Creating interfaces that are just insane
-                                        With the power of R, the possibilities are vast
-                                        Gonna make an app that's gonna last"),
+                                        p("Verse 1:"),
+                                        p("I'm all about that web development"),
+                                        p("Making apps that are sleek and inventive"),
+                                        p("Shiny's my tool, it's the king of the game"),
+                                        p("Creating interfaces that are just insane"),
+                                        p("With the power of R, the possibilities are vast"),
+                                        p("Gonna make an app that's gonna last"),
                                         br(),
-                                        p("Chorus:
-                                        Shiny, shiny, making apps so bright
-                                        User friendly, it's a sight to see at night
-                                        With its widgets and gizmos, you can't go wrong
-                                        Shiny's where it's at, now come along"),
+                                        p("Chorus:"),
+                                        p("Shiny, shiny, making apps so bright"),
+                                        p("User friendly, it's a sight to see at night"),
+                                        p("With its widgets and gizmos, you can't go wrong"),
+                                        p("Shiny's where it's at, now come along"),
                                         br(),
-                                        p("Verse 2:
-                                        I can customize and make it mine
-                                        With Shiny's help, it's one of a kind
-                                        Data visualization, it's a snap
-                                        Interactivity, that's the big rap
-                                        With reactive programming, it's all so smooth
-                                        Making apps with Shiny, it's just the proof"),
+                                        p("Verse 2:"),
+                                        p("I can customize and make it mine"),
+                                        p("With Shiny's help, it's one of a kind"),
+                                        p("Data visualization, it's a snap"),
+                                        p("Interactivity, that's the big rap"),
+                                        p("With reactive programming, it's all so smooth"),
+                                        p("Making apps with Shiny, it's just the proof"),
                                         br(),
-                                        p("Chorus:
-                                        Shiny, shiny, making apps so bright
-                                        User friendly, it's a sight to see at night
-                                        With its widgets and gizmos, you can't go wrong
-                                        Shiny's where it's at, now come along"),
+                                        p("Chorus:"),
+                                        p("Shiny, shiny, making apps so bright"),
+                                        p("User friendly, it's a sight to see at night"),
+                                        p("With its widgets and gizmos, you can't go wrong"),
+                                        p("Shiny's where it's at, now come along"),
                                         br(),
-                                        p("Bridge:
-                                        From dashboards to simulations, it's all the same
-                                        Shiny's got you covered, what's the fuss about the fame
-                                        With its ease of use, it's just a breeze
-                                        Making apps with Shiny, you'll be sure to please"),
+                                        p("Bridge:"),
+                                        p("From dashboards to simulations, it's all the same"),
+                                        p("Shiny's got you covered, what's the fuss about the fam"),
+                                        p("With its ease of use, it's just a breeze"),
+                                        p("Making apps with Shiny, you'll be sure to please"),
                                         br(),
-                                        p("Chorus:
-                                        Shiny, shiny, making apps so bright
-                                        User friendly, it's a sight to see at night
-                                        With its widgets and gizmos, you can't go wrong
-                                        Shiny's where it's at, now come along"),
+                                        p("Chorus:"),
+                                        p("Shiny, shiny, making apps so bright"),
+                                        p("User friendly, it's a sight to see at night"),
+                                        p("With its widgets and gizmos, you can't go wrong"),
+                                        p("Shiny's where it's at, now come along"),
                                         br(),
-                                        p("Outro:
-                                        Shiny's the future, it's where it's at
-                                        With its power and grace, it's hard to beat that
-                                        So let's make some apps, it's time to get started
-                                        With Shiny by your side, you'll be the one who's charted."),
+                                        p("Outro:"),
+                                        p("Shiny's the future, it's where it's at"),
+                                        p("With its power and grace, it's hard to beat that"),
+                                        p("So let's make some apps, it's time to get started"),
+                                        p("With Shiny by your side, you'll be the one who's charted."),
                                         br(),
                                         p("by ChatGPT")
                              )

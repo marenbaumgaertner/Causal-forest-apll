@@ -226,7 +226,63 @@ Move the slider bar to have a look at how the weights change for different value
                              src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df03765c-4963-440f-b65c-9d892bd45ba3/dej1kki-36b93e62-9880-4753-a9be-87e585cf380a.png/v1/fill/w_1600,h_900,q_80,strp/blinding_light_by_natozuski_dej1kki-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvZGYwMzc2NWMtNDk2My00NDBmLWI2NWMtOWQ4OTJiZDQ1YmEzXC9kZWoxa2tpLTM2YjkzZTYyLTk4ODAtNDc1My1hOWJlLTg3ZTU4NWNmMzgwYS5wbmciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.KEKdAkMR4R097tQtgeuBF_DG-mdgj4BLzbLScCBteJY"
                              #"https://thumbs.dreamstime.com/z/creative-shiny-pink-color-background-flat-lay-abstract-decorations-soft-focus-163557328.jpg", shinydashboard = FALSE
                            ),
-                           imageOutput("image3")),
+                           sidebarLayout(
+                             mainPanel(imageOutput("image3")),
+                             sidebarPanel(
+                               h3("a song of praise to shiny"),
+                               br(),
+                                        p("Verse 1:
+                                        I'm all about that web development
+                                        Making apps that are sleek and inventive
+                                        Shiny's my tool, it's the king of the game
+                                        Creating interfaces that are just insane
+                                        With the power of R, the possibilities are vast
+                                        Gonna make an app that's gonna last"),
+                                        br(),
+                                        p("Chorus:
+                                        Shiny, shiny, making apps so bright
+                                        User friendly, it's a sight to see at night
+                                        With its widgets and gizmos, you can't go wrong
+                                        Shiny's where it's at, now come along"),
+                                        br(),
+                                        p("Verse 2:
+                                        I can customize and make it mine
+                                        With Shiny's help, it's one of a kind
+                                        Data visualization, it's a snap
+                                        Interactivity, that's the big rap
+                                        With reactive programming, it's all so smooth
+                                        Making apps with Shiny, it's just the proof"),
+                                        br(),
+                                        p("Chorus:
+                                        Shiny, shiny, making apps so bright
+                                        User friendly, it's a sight to see at night
+                                        With its widgets and gizmos, you can't go wrong
+                                        Shiny's where it's at, now come along"),
+                                        br(),
+                                        p("Bridge:
+                                        From dashboards to simulations, it's all the same
+                                        Shiny's got you covered, what's the fuss about the fame
+                                        With its ease of use, it's just a breeze
+                                        Making apps with Shiny, you'll be sure to please"),
+                                        br(),
+                                        p("Chorus:
+                                        Shiny, shiny, making apps so bright
+                                        User friendly, it's a sight to see at night
+                                        With its widgets and gizmos, you can't go wrong
+                                        Shiny's where it's at, now come along"),
+                                        br(),
+                                        p("Outro:
+                                        Shiny's the future, it's where it's at
+                                        With its power and grace, it's hard to beat that
+                                        So let's make some apps, it's time to get started
+                                        With Shiny by your side, you'll be the one who's charted."),
+                                        br(),
+                                        p("by ChatGPT")
+                             )
+                             
+                             ), cellWidths = c("60%", "40%")
+                           ),
+
 
                   tabPanel("So Shiny Its Blinding",
                            setBackgroundImage(

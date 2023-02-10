@@ -123,7 +123,7 @@ server <- function(input, output) {
     }
     
     
-    grid_seq <- seq(-3,3,0.2) # sequence of X
+    grid_seq <- seq(-3,3,0.1) # sequence of X
     grid <- input$grid # chosen tau
     tau_y <- tau(grid_seq)
     gridx = as.matrix(cbind(grid_seq,matrix(0,length(grid_seq),p-1)))
@@ -179,7 +179,7 @@ server <- function(input, output) {
   })
   
   output$explanation2 <- renderText({
-    "How: Causal Forests estimate CATEs as a localized/individualized residual-on-residual regression with X-specific weights alpha(X)"
+    "How: Causal Forests estimate CATEs as a localized/individualized residual-on-residual regression with X-specific weights α((X)"
   })
   
   output$explanationformula <- renderText({
@@ -188,7 +188,7 @@ server <- function(input, output) {
   
   output$explanation3 <- renderText({
     "In the first step, the nuisance parameters mhat(X) and ê(X) are estimated.
-  After that, a Causal Forest is built using both nuisance parameters and weights α(X) to predict tauhat."
+  After that, a Causal Forest is built using both nuisance parameters and weights α(X) to predict 𝜏_hat."
   })
 
   output$explanation4 <- renderText({
@@ -253,7 +253,7 @@ server <- function(input, output) {
   
   output$image3 <- renderImage({
     list(src = "www/meme.jpg",
-         width = "70%",
+         width = 800,
          height = 550,
          align = "center")
   }, deleteFile = F)

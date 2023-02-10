@@ -106,28 +106,40 @@ Move the slider bar to have a look at how the weights change for different value
                                           textOutput("explanation11"),
                                           br(),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
-                                          h4("DGP 1: 𝜏(x) = 1[x > #f2d925]"), 
+                                          h4("DGP 1: 𝜏(x) = 1[x > -0.5π]"), 
                                           p("Here, we can see at x = -0.5π an upwards jump of the true CATE from 0 to 1.
-                                            Very close to x = -0.5π, the estimates differ a lot to the true CATEs. 
+                                            Very close to x = -0.5π, the estimates differ a lot to the true CATEs.
                                             If we move further away from x = -0.5π,
                                             the estimated CATE gets closer to the true CATE.
                                             
-                                            In the case of a balanced treatment share, for small values, x < -1.5,
-                                            the predicted CATEs are close to zero.
-                                            Hence, the RORR presents a flat regression-line. For values larger than -1.5,
-                                            the predicted CATEs are close to one and the regression line gets steeper. 
+                                            Regardless of the chosen treatment propensities, we see that for units with 
+                                            small values of x (green points), their outcome model is well fitted. 
+                                            Because these units present an underlying true treatment effect of zero
+                                            (less variance of y-values), 
+                                            this leads to small Y-residuals centered around zero.
+                                            For units with a treatment effect of one (orange/red points),
+                                            the outcome model is worse fitted, the Y-residuals are higher.
                                             
-                                            When we want to predict the treatment effect of a small x value i.e. of -3,
-                                            these residuals receive a higher weight (larger circle),
-                                            where the corresponding observations end up more often in the same leaf (=green points). 
-                                            At the y-axis (res_y) the green residuals are centered around zero,
-                                            because the outcome model fits well the observations corresonding y-values
-                                            under a small treatment effect (less variance of y-values). 
-                                            In contrast, when we aim to predict the treatment effect of a high x value i.e. of 3,
-                                            these residuals in line with higher x values (orange/red points) are weighted more heavily.
-                                           
-                                            In the cases of non-constant treatment propensities, the res_W's are more dispersed. 
-                                            "),
+                                            Depending on the chosen treatment propensities, the W-residuals are centered
+                                            around -0.5 & 0.5, or are more dispersed.
+                                            
+                                            Considering the balanced treatment share:
+                                            
+                                            For the estimation of the CATEs for small values, x < -1.5,
+                                            the residuals of the green-points receive a higher weight
+                                            (x falls into the same leaves as the green-units).
+                                            The predicted CATEs are around 0.125. Hence, the RORR presents a flat regression-line.
+                                            For the estimation of the CATEs for higher values than -1.5,
+                                            the residuals of the orange/red-points are weighted more heavily.
+                                            The predicted CATEs are close to one and the regression line gets steeper.
+                                            
+                                            Changing the treatment propensites to a non-constant share, i.e. the step-function, 
+                                            we can better see that equally weighted units, hence similar units (fall into the same leaves),  
+                                            are controls (with negative W-residuals)
+                                            and treated (with positive W-residuals), used for estimating the within-leaves estimate.
+                                            The more the controls refer to high negative Y-residuals
+                                            and the treated to high positive Y-residuals, 
+                                            the steeper the regression line is, and hence the estimated CATE.                                            "),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
                                           h4("DGP 2: 𝜏(x) = exp(x)"), 
                                           p("The CATE is close to zero for individuals with a low value in x 
@@ -228,6 +240,9 @@ Move the slider bar to have a look at how the weights change for different value
                            sidebarPanel(
                              p("This app has been created as a group project by Maren Baumgärtner, Sophia Herrmann, Kevin Kopp, Alexandros Parginos Dös and Stella Rotter for the course \" DS407 Causal Machine Learing\"."
                                ),
+                             br(),
+                             tags$a(href="https://github.com/marenbaumgaertner/causal-forest-application.git", "Get the Code!"),
+                             br(),
                              br(),
                              p("In case you have any further questions,
 feel free to contact us via"), em("maren.baumgaertner@student.uni-tuebingen.de"), width = "60%"

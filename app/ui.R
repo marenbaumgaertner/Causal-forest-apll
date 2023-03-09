@@ -23,24 +23,28 @@ ui <- fluidPage(theme = shinytheme("simplex"),
                   # First Panel
                   tabPanel("Visualisation",
                            h3("Welcome to  our Shiny App!"),
-                           h5("For the general General Setup see the Theoretical Background"),
+                           h5("This Shiny App is a spin-off of the R Notebook Causal ML: ",
+                           tags$a(href="https://mcknaus.github.io/assets/notebooks/SNB/SNB_Causal_tree_forest.nb.html", "Causal Tree and Causal Forest"),
+                           " that could serve as starting point for further exploration."),
+                           h5("For the General Setup see the Theoretical Background"),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
 ################################################################################
                            br(),
                            br(), 
                            sidebarPanel(
-                             "This page allows you to engage with causal forests.",
+                             "This page allows you to engage with Causal Forests.",
                              br(),
                              br(),
                              selectInput("e", withMathJax(helpText("Choose a treatment propensity")), 
-                                         choices = c("e(x) = pnorm(sin(x))" = 1, 
-                                                     "e(x) = 0.5" = 2, 
-                                                     "e(x) = step" = 3), multiple = FALSE),
+                                         choices = c("balanced" = 2,
+                                                     "continuous" = 1, 
+                                                     "stepwise" = 3), 
+                                         multiple = FALSE ),
                              br(),
                              selectInput("dgp", withMathJax(helpText("Choose a data generating process")), 
-                                         choices = c("𝜏(x) = 1[x > -0.5π]" = 1, 
-                                                     "𝜏(x) = exp(x)" = 2, 
-                                                     "𝜏(x) = 0.3x" = 3), multiple = FALSE),
+                                         choices = c("𝜏(x) = 0.3x" = 3,
+                                                     "𝜏(x) = 1[x > -0.5π]" = 1, 
+                                                     "𝜏(x) = exp(x)" = 2), multiple = FALSE),
                              br(),
                              sliderInput(
                                "grid",
@@ -58,21 +62,17 @@ ui <- fluidPage(theme = shinytheme("simplex"),
                              h5("CATE function"),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
                              
-                             p("This Graph plots the true CATE-Function 𝜏 (black) as well as the estimated 𝜏 (red) for different levels of X1. With increased sample size n, the estimated 𝜏 are more close to the true 𝜏."),
+                             p("This graph plots the true CATE-Function 𝜏 (black) as well as the estimated 𝜏 (red) for different levels of X1. With increased sample size n, the estimated 𝜏 are more close to the true 𝜏."),
                              plotOutput("CatePlot"),
                              h5("Residual regression"),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
-                             p("This graph plots the residuals of W against the residuals of Y, showing how accurate the Causal forest predicts treatment W and outcome Y. Additionally, the size of the residuals is proportional to the weight they receive and the color indicates lower to higher values of X1.
+                             p("This graph plots the residuals of W against the residuals of Y, showing how accurate the Causal Forest predicts treatment W and outcome Y. Additionally, the size of the residuals is proportional to the weight they receive and the color indicates lower to higher values of X1.
 Move the slider bar to have a look at how the weights change for different values of X."),
                              plotOutput("scatterPlot")
                            ),
                            cellWidths = c("40%", "60%")
                   ),
-                  tabPanel("Theoretical Background", h3("Here you find some theoretical background on causal forests"),
-                           br(),
-                           br(),
-                           sidebarLayout(
-                             tabPanel("Theoretical Background", h3("Here you find some theoretical background on causal forests"),
+                  tabPanel("Theoretical Background", h3("Here you find some theoretical background on Causal Forests"),
                            br(),
                            br(),
                            sidebarLayout(
@@ -81,11 +81,7 @@ Move the slider bar to have a look at how the weights change for different value
                                           br(),
                                           br(),
                                           br(),
-                                          br(),
-                                          textOutput("explanation1"),
-                                          br(),
-                                          textOutput("explanation2"),
-                                          br(),
+                                         
                                           
                                           br(),
 ########################--PUT YOUR EXPLANATION IN HERE--########################
@@ -163,7 +159,7 @@ Move the slider bar to have a look at how the weights change for different value
                             observations with a similar x-value get a bigger weight.
                             
                             This is expected as, when estimating the treatment effect
-                            for a new observation, causal forests give higher weights
+                            for a new observation, Causal Forests give higher weights
                             to observations with a similar value for the important variable
                             (in this case x).
                             
@@ -201,6 +197,11 @@ Move the slider bar to have a look at how the weights change for different value
                             underlines the symmetry of the results."),
 br(),
                                 h4("Causal Forest Theory:"),
+                                      br(),
+                                textOutput("explanation1"),
+                                br(),
+                                textOutput("explanation2"),
+
                                 #textOutput("explanationformula"),
                                 br(),
                                 imageOutput("image2", height = 50),
@@ -294,7 +295,6 @@ br(),
                              ), cellWidths = c("60%", "40%")
                            ),
 
-
                   tabPanel("So Shiny Its Blinding",
                            setBackgroundImage(
                              src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df03765c-4963-440f-b65c-9d892bd45ba3/dej1kki-36b93e62-9880-4753-a9be-87e585cf380a.png/v1/fill/w_1600,h_900,q_80,strp/blinding_light_by_natozuski_dej1kki-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvZGYwMzc2NWMtNDk2My00NDBmLWI2NWMtOWQ4OTJiZDQ1YmEzXC9kZWoxa2tpLTM2YjkzZTYyLTk4ODAtNDc1My1hOWJlLTg3ZTU4NWNmMzgwYS5wbmciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.KEKdAkMR4R097tQtgeuBF_DG-mdgj4BLzbLScCBteJY"
@@ -305,10 +305,10 @@ br(),
                            br(),
                            br(), # space
                            sidebarPanel(
-                             p("This app has been created as a group project by Maren Baumgärtner, Sophia Herrmann, Kevin Kopp, Alexandros Parginos Dös and Stella Rotter for the course \" DS407 Causal Machine Learing\"."
+                             p("This app has been created as a group project by Maren Baumgärtner, Sophia Herrmann, Kevin Kopp, Alexandros Parginos Dös and Stella Rotter for the course \"DS407 Causal Machine Learning\"."
                                ),
                              br(),
-                             tags$a(href="https://github.com/marenbaumgaertner/causal-forest-application.git", "Get the Code!"),
+                             tags$a(href="https://github.com/marenbaumgaertner/Causal-Forest-application.git", "Get the Code!"),
                              br(),
                              br(),
                              p("In case you have any further questions,
